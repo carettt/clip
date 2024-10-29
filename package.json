@@ -2,13 +2,17 @@
   "name": "clip",
   "version": "0.1.0",
   "description": "test environment for test-driven development",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js"
   },
   "keywords": [
     "testing"
   ],
   "author": "caret_",
-  "license": "LGPL-3.0-or-later"
+  "license": "LGPL-3.0-or-later",
+  "directories": {
+    "lib": "lib"
+  }
 }
