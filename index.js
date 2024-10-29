@@ -3,15 +3,15 @@ const { setTimeout } = require("timers/promises");
 
 let clip = setup();
 
-clip.test("example", async (t) => {
-  await setTimeout(5000);
+clip.assert("example", async (t) => {
+  await setTimeout(1000);
   t.log("Running example test!");
   return false;
 });
 
-clip.test("another", (t) => {
+clip.assert("another", (t) => {
   t.log("Running another test!");
   return true;
 });
 
-clip.assert();
+clip.check();
