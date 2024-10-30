@@ -1,5 +1,5 @@
 {
-  description = "project";
+  description = "clip, a test environment for test-driven development";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
