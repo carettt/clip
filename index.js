@@ -1,21 +1,33 @@
-const { setup } = require("./lib/clip.js");
+const { setup, MockServer } = require("./lib/clip.js");
 const { setTimeout } = require("timers/promises");
 
 // get Clip object
 let clip = setup();
 
-// New test
-clip.assert("example", async (t) => {
-  await setTimeout(1000);
-  t.log("Running example test!");
-  return false;
-});
+// Setup mock server
+let mock = new MockServer();
 
-// New test
-clip.assert("another", (t) => {
-  t.log("Running another test!");
-  return true;
-});
+mock.get("/", "testing");
+mock.start().then(() => {
+  // New test
+  clip.assert("example", async (t) => {
+    await setTimeout(1000);
+    t.log("Running example test!");
+    return false;
+  });
 
-// Get test results
-clip.check();
+  // New test
+  clip.assert("another", async (t) => {
+    console.log("starting another test");
+    let res = await fetch("http://localhost:3000/test");
+    let text = await res.text();
+
+    return text === "testing";
+  });
+
+  // Get test results
+  clip.check();
+
+  // Stop server
+  mock.stop();
+});

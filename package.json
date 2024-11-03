@@ -14,5 +14,8 @@
   "license": "LGPL-3.0-or-later",
   "directories": {
     "lib": "lib"
+  },
+  "dependencies": {
+    "express": "^5.0.1"
   }
 }
