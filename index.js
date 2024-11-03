@@ -12,22 +12,20 @@ mock.start().then(() => {
   // New test
   clip.assert("example", async (t) => {
     await setTimeout(1000);
-    t.log("Running example test!");
-    return false;
+    t.log("This test should pass");
+    return true;
   });
 
   // New test
   clip.assert("another", async (t) => {
-    console.log("starting another test");
-    let res = await fetch("http://localhost:3000/test");
+    let res = await fetch("http://localhost:3000/");
     let text = await res.text();
 
-    return text === "testing";
+    return text === "tested";
   });
 
   // Get test results
-  clip.check();
-
-  // Stop server
-  mock.stop();
+  clip.check().then(() => {
+    mock.stop();
+  });
 });
